@@ -113,6 +113,16 @@
   60% { filter: brightness(1.1); transform: translateX(-2px) translateY(0px); }
   80% { filter: brightness(1); transform: translateX(1px) translateY(-2px); }
 }
+
+    /* Spinning effect for Mochkil Thief Orange Box */
+.card img[src*="mochkil_puffs_orange"] {
+  animation: spinBox 4s linear infinite;
+}
+
+@keyframes spinBox {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
   </style>
 </head>
 

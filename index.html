@@ -100,6 +100,19 @@
       text-align: center;
       border-top: 1px solid rgba(255,255,255,0.08);
     }
+
+    /* Glitch shimmer effect for Azulo cereal cards */
+.card img[src*="azulo"] {
+  animation: glitchShimmer 2.5s infinite;
+}
+
+@keyframes glitchShimmer {
+  0%, 100% { filter: brightness(1); transform: translateX(0px) translateY(0px); }
+  20% { filter: brightness(1.2); transform: translateX(-1px) translateY(1px); }
+  40% { filter: brightness(0.9); transform: translateX(2px) translateY(-1px); }
+  60% { filter: brightness(1.1); transform: translateX(-2px) translateY(0px); }
+  80% { filter: brightness(1); transform: translateX(1px) translateY(-2px); }
+}
   </style>
 </head>
 

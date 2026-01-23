@@ -37,6 +37,13 @@ button{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,2
 #guestbook-messages{max-height:400px;overflow-y:auto;padding-right:8px;display:flex;flex-direction:column;gap:10px;}
 .guestbook-entry{padding:10px;border-radius:8px;background:rgba(0,242,255,0.05);border:1px solid rgba(0,242,255,0.2);color:var(--text-main);font-family:'Courier New',monospace;font-size:0.85rem;animation:entryFade 0.5s ease-out;}
 @keyframes entryFade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+@keyframes mochkilShake {
+  0% { transform: translate(0,0); }
+  25% { transform: translate(1px, -1px); }
+  50% { transform: translate(-1px, 1px); }
+  75% { transform: translate(1px, 1px); }
+  100% { transform: translate(0,0); }
+}
 
 footer{padding:40px 20px;text-align:center;border-top:1px solid var(--glass-border);font-size:0.7rem;opacity:0.5;}
 </style>
@@ -52,15 +59,51 @@ footer{padding:40px 20px;text-align:center;border-top:1px solid var(--glass-bord
 <section class="section">
 <h2>🧠 Reality Science Division</h2>
 <div class="grid">
-<div class="card"><div class="status">Quantum Signature</div><img src="dr_azul_box.png"><h3>Dr. Azul — Reality Science</h3><p>Chief researcher of improbable outcomes.</p><button disabled>INSPECT</button></div>
+<div class="card"><div class="status">Quantum Signature</div><img src="dr_azul_box.png" alt="Dr. Azul"><h3>Dr. Azul — Reality Science</h3><p>Chief researcher of improbable outcomes.</p><button disabled>INSPECT</button></div>
+</div>
+</section>
+
+<section class="section">
+<h2>🛡️ Guardian Units</h2>
+<div class="grid">
+<div class="card"><div class="status">Timeline Protected</div><img src="azul_box_guardian.png" alt="Azul Guardian"><h3>Azul — Guardian Class</h3><p>Protector of unstable timelines.</p><button disabled>INSPECT</button></div>
+<div class="card"><div class="status">Commanding Seven Realities</div><img src="captain_azul.png" alt="Captain Azul"><h3>Captain Azul</h3><p>Navigating temporal tides.</p><button disabled>INSPECT</button></div>
+<div class="card"><div class="status">Stealth Mode</div><img src="headhunter_azul_boxed_figure.png" alt="Headhunter"><h3>Headhunter Azul</h3><p>Tracking temporal targets.</p><button disabled>INSPECT</button></div>
 </div>
 </section>
 
 <section class="section">
 <h2 style="border-color: var(--accent-orange);">🔥 Chaos & Culture</h2>
 <div class="grid">
-<div class="card"><div class="status" style="color:var(--accent-orange);">Containment Failed</div><img src="mochkil_rap_figure_box.png"><h3>Mochkil — Rap Figure</h3><p>Cultural disruptor and snack thief.</p><button disabled>INSPECT</button></div>
-<div class="card" style="border-color: var(--accent-purple);"><div class="status" style="color: var(--accent-purple); background: rgba(188, 19, 254, 0.1);">Reality Event: 2nd Birthday</div><img src="unicorn_cake_glitch.jpg"><h3>The Unicorn — Sprinkle Apocalypse</h3><p>A sugary singularity that alters digestive physics.</p><button disabled>CAKE DETECTED</button></div>
+<div class="card"><div class="status" style="color:var(--accent-orange);">Containment Failed</div><img src="mochkil_rap_figure_box.png" alt="Mochkil Rap"><h3>Mochkil — Rap Figure</h3><p>Cultural disruptor and professional snack thief.</p><button disabled>INSPECT</button></div>
+<div class="card" style="border-color: var(--accent-purple);"><div class="status" style="color: var(--accent-purple); background: rgba(188, 19, 254, 0.1);">Reality Event: 2nd Birthday</div><img src="unicorn_cake_glitch.jpg" alt="Unicorn Cake"><h3>The Unicorn — Sprinkle Apocalypse</h3><p>A sugary singularity altering digestive physics.</p><button disabled>CAKE DETECTED</button></div>
+<div class="card"><div class="status" style="color:var(--accent-orange);">Executive Chef</div><img src="commander_in_chef.png" alt="Commander Chef"><h3>Mochkil — Commander in Chef</h3><p>Host of Snack Attack. Michelin-star chaos.</p><button disabled>INSPECT</button></div>
+<div class="card"><div class="status" style="color: var(--accent-cyan);">Player One / Legacy Unit</div><img src="gamer_seth_action_figure.png" alt="Gamer Seth"><h3>Gamer Seth — Pro Edition</h3><p>Master of virtual realms.</p><button disabled>LEGENDARY ARTIFACT</button></div>
+</div>
+</section>
+
+<section class="section">
+<h2 style="border-color: var(--accent-purple);">🌱 Core Reality</h2>
+<div class="grid">
+<div class="card"><div class="status" style="color:var(--accent-purple);">Protected</div><img src="stella_box_doll.png" alt="Stella"><h3>Stella — Chaos Seed</h3><p>Emits joy. Generates laughter.</p><button disabled>INSPECT</button></div>
+<div class="card"><div class="status" style="color:var(--accent-purple);">Actively Reshaping</div><img src="luna_babydoll_spaghetti.png" alt="Luna"><h3>Luna — Spaghetti Timeline</h3><p>Manipulator of pasta, time, and gravity.</p><button disabled>INSPECT</button></div>
+</div>
+</section>
+
+<section class="section">
+<h2>📦 Limited Reality Sets</h2>
+<div class="grid">
+<div class="card"><div class="status">Archived</div><img src="group_box_set.png"><h3>Family & Founders Set</h3><button disabled>INSPECT</button></div>
+<div class="card"><div class="status">Special Edition</div><img src="lori_azul_space_adventure_boxedset.png"><h3>Space Adventure Boxed Set</h3><button disabled>OUT OF STOCK</button></div>
+</div>
+</section>
+
+<section class="section">
+<h2>🥣 The Glitch Pantry</h2>
+<div class="grid">
+<div class="card"><img src="azulo_bluberry_vanilla.png"><h3>Azulo Blueberry</h3><button disabled>OFFLINE</button></div>
+<div class="card"><img src="azulos_neon_crunch.png"><h3>Azulo Neon</h3><button disabled>OFFLINE</button></div>
+<div class="card"><img src="mochkil_puffs_orange.png"><h3>Mochkil Thief Orange</h3><button disabled>OFFLINE</button></div>
 </div>
 </section>
 
@@ -95,7 +138,6 @@ signInAnonymously(auth).catch(e=>console.error("Uplink Error:",e));
 
 const messagesContainer=document.getElementById("guestbook-messages"),q=query(collection(db,"guestbookEntries"),orderBy("timestamp","asc"));
 
-/* --- START OF UPDATED UPLINK --- */
 onSnapshot(q, s => {
   messagesContainer.innerHTML = "";
   s.forEach(d => {
@@ -104,72 +146,22 @@ onSnapshot(q, s => {
     const e = document.createElement("div");
     e.className = "guestbook-entry";
     
-    // Default Guest Settings
-    let name = "[GUEST]";
-    let displayMessage = msg;
-    let borderColor = "rgba(0, 242, 255, 0.2)";
-    let bgColor = "rgba(0, 242, 255, 0.05)";
-    let labelColor = "var(--accent-cyan)";
-    let animation = "entryFade 0.5s ease-out";
+    let name = "[GUEST]", displayMessage = msg, borderColor = "rgba(0, 242, 255, 0.2)", bgColor = "rgba(0, 242, 255, 0.05)", labelColor = "var(--accent-cyan)", animation = "entryFade 0.5s ease-out";
 
-    // 1. Creator Mode (The Master Key)
     if (msg.includes("::mr::") || data.userId === CREATOR_UID) {
-      name = "[CREATOR]";
-      displayMessage = msg.replace("::mr::", "").trim();
-      borderColor = "var(--accent-purple)";
-      bgColor = "rgba(188, 19, 254, 0.1)";
-      labelColor = "var(--accent-purple)";
-    } 
-    // 2. Azul Mode (Quantum Science)
-    else if (msg.includes("::azul::")) {
-      name = "[DR. AZUL] 🧠";
-      displayMessage = msg.replace("::azul::", "").trim();
-      borderColor = "var(--accent-cyan)";
-      bgColor = "rgba(0, 242, 255, 0.15)";
-      labelColor = "var(--accent-cyan)";
-    } 
-    // 3. Mochkil Mode (Chaos & Snacks)
-    else if (msg.includes("::chef::")) {
-      name = "[CHEF MOCHKIL] 🍳";
-      displayMessage = msg.replace("::chef::", "").trim();
-      borderColor = "var(--accent-orange)";
-      bgColor = "rgba(255, 140, 0, 0.2)";
-      labelColor = "var(--accent-orange)";
-      animation = "mochkilShake 0.3s infinite";
+      name = "[CREATOR]"; displayMessage = msg.replace("::mr::", "").trim(); borderColor = "var(--accent-purple)"; bgColor = "rgba(188, 19, 254, 0.1)"; labelColor = "var(--accent-purple)";
+    } else if (msg.includes("::azul::")) {
+      name = "[DR. AZUL] 🧠"; displayMessage = msg.replace("::azul::", "").trim(); borderColor = "var(--accent-cyan)"; bgColor = "rgba(0, 242, 255, 0.15)"; labelColor = "var(--accent-cyan)";
+    } else if (msg.includes("::chef::")) {
+      name = "[CHEF MOCHKIL] 🍳"; displayMessage = msg.replace("::chef::", "").trim(); borderColor = "var(--accent-orange)"; bgColor = "rgba(255, 140, 0, 0.2)"; labelColor = "var(--accent-orange)"; animation = "mochkilShake 0.3s infinite";
     }
 
-    // Apply Styles to the element
-    e.style.border = `1px solid ${borderColor}`;
-    e.style.background = bgColor;
-    e.style.marginBottom = "8px";
-    e.style.padding = "10px";
-    e.style.borderRadius = "8px";
-    e.style.animation = animation;
-
-    e.innerHTML = `<span style="color:${labelColor}; font-weight:bold; font-family:'Courier New', monospace;">${name}:</span> 
-                   <span style="color:#fff;">${displayMessage}</span>`;
-    
+    e.style.border = `1px solid ${borderColor}`; e.style.background = bgColor; e.style.marginBottom = "8px"; e.style.padding = "10px"; e.style.borderRadius = "8px"; e.style.animation = animation;
+    e.innerHTML = `<span style="color:${labelColor}; font-weight:bold;">${name}:</span> <span style="color:#fff;">${displayMessage}</span>`;
     messagesContainer.appendChild(e);
   });
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
 });
-
-// Add this CSS for the Chef's Shake effect
-if (!document.getElementById('mochkil-styles')) {
-  const style = document.createElement('style');
-  style.id = 'mochkil-styles';
-  style.innerHTML = `
-    @keyframes mochkilShake {
-      0% { transform: translate(0,0); }
-      25% { transform: translate(1px, -1px); }
-      50% { transform: translate(-1px, 1px); }
-      75% { transform: translate(1px, 1px); }
-      100% { transform: translate(0,0); }
-    }
-  `;
-  document.head.appendChild(style);
-}
-/* --- END OF UPDATED UPLINK --- */
 
 const guestbookForm=document.getElementById("guestbook-form"),guestbookMessageInput=document.getElementById("guestbook-message");
 guestbookForm.addEventListener("submit",async e=>{

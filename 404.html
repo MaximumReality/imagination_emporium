@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>404 — Reality Not Found</title>
+<style>
+:root{
+  --bg-dark:#050508;
+  --accent-cyan:#00f2ff;
+  --accent-orange:#ff8c00;
+  --accent-purple:#bc13fe;
+  --text-main:#e0e0e0;
+}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg-dark);
+  color:var(--text-main);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+  text-align:center;
+}
+h1{
+  font-size:6rem;
+  color:var(--accent-cyan);
+  margin:0;
+  animation: glitchColor 1.5s infinite;
+}
+h2{
+  font-size:1.5rem;
+  margin:10px 0 30px 0;
+  color:var(--accent-purple);
+}
+a.home-link{
+  display:inline-block;
+  padding:10px 20px;
+  background:var(--accent-cyan);
+  color:#050508;
+  text-decoration:none;
+  font-weight:bold;
+  border-radius:8px;
+  transition:0.3s;
+}
+a.home-link:hover{
+  transform:scale(1.1);
+  background:var(--accent-orange);
+}
+.star-field{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1;}
+.star{position:absolute;background:white;border-radius:50%;opacity:0.3;animation:twinkle var(--duration) infinite ease-in-out;}
+@keyframes twinkle{0%,100%{transform:scale(1);opacity:0.3}50%{transform:scale(1.5);opacity:0.7}}
+@keyframes glitchColor{
+  0%,100%{text-shadow:2px 2px var(--accent-cyan),-2px -2px var(--accent-purple);}
+  50%{text-shadow:4px -4px var(--accent-orange),-4px 4px var(--accent-cyan);}
+}
+</style>
+</head>
+<body>
+<div class="star-field" id="starField"></div>
+<h1>404</h1>
+<h2>Oops! Artifact not found in this reality.</h2>
+<a href="index.html" class="home-link">Return to Maximum Reality</a>
+
+<script>
+// Starfield
+const field=document.getElementById('starField');
+for(let i=0;i<80;i++){
+  const s=document.createElement('div');
+  s.className='star';
+  s.style.left=Math.random()*100+'%';
+  s.style.top=Math.random()*100+'%';
+  const sz=Math.random()*3+1;
+  s.style.width=sz+'px';
+  s.style.height=sz+'px';
+  s.style.setProperty('--duration',Math.random()*3+2+'s');
+  field.appendChild(s);
+}
+</script>
+</body>
+</html>

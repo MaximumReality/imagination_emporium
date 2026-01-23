@@ -27,8 +27,14 @@ button{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,2
 .card img[src*="mochkil_puffs_orange"]{animation:sneakyWiggle 3s ease-in-out infinite;}
 @keyframes realityGlitch{0%,100%{filter:hue-rotate(0deg)}50%{filter:hue-rotate(15deg) brightness(1.1)}}
 @keyframes sneakyWiggle{0%,100%{transform:rotate(0deg)}25%{transform:rotate(-2deg)}75%{transform:rotate(2deg)}}
+@keyframes mochkilShake {
+  0% { transform: translate(0,0); }
+  25% { transform: translate(1px, -1px); }
+  50% { transform: translate(-1px, 1px); }
+  75% { transform: translate(1px, 1px); }
+  100% { transform: translate(0,0); }
+}
 
-/* GUESTBOOK STYLING */
 #guestbook-section{max-width:600px;margin:40px auto;padding:20px;background:var(--card-bg);backdrop-filter:blur(12px);border-radius:16px;border:1px solid var(--glass-border);color:#e0e0e0;}
 #guestbook-section h2{text-align:center;margin-bottom:15px;color:var(--accent-cyan);border:none;}
 #guestbook-form{display:flex;gap:10px;margin-bottom:20px;}
@@ -37,13 +43,6 @@ button{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,2
 #guestbook-messages{max-height:400px;overflow-y:auto;padding-right:8px;display:flex;flex-direction:column;gap:10px;}
 .guestbook-entry{padding:10px;border-radius:8px;background:rgba(0,242,255,0.05);border:1px solid rgba(0,242,255,0.2);color:var(--text-main);font-family:'Courier New',monospace;font-size:0.85rem;animation:entryFade 0.5s ease-out;}
 @keyframes entryFade{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-@keyframes mochkilShake {
-  0% { transform: translate(0,0); }
-  25% { transform: translate(1px, -1px); }
-  50% { transform: translate(-1px, 1px); }
-  75% { transform: translate(1px, 1px); }
-  100% { transform: translate(0,0); }
-}
 
 footer{padding:40px 20px;text-align:center;border-top:1px solid var(--glass-border);font-size:0.7rem;opacity:0.5;}
 </style>
@@ -59,16 +58,16 @@ footer{padding:40px 20px;text-align:center;border-top:1px solid var(--glass-bord
 <section class="section">
 <h2>🧠 Reality Science Division</h2>
 <div class="grid">
-<div class="card"><div class="status">Quantum Signature</div><img src="dr_azul_box.png" alt="Dr. Azul"><h3>Dr. Azul — Reality Science</h3><p>Chief researcher of improbable outcomes.</p><button disabled>INSPECT</button></div>
+<div class="card"><div class="status">Quantum Signature</div><img src="dr_azul_box.png" alt="Dr. Azul"><h3>Dr. Azul — Reality Science</h3><p>Chief researcher of improbable outcomes. Solving non-existent problems.</p><button disabled>INSPECT</button></div>
 </div>
 </section>
 
 <section class="section">
 <h2>🛡️ Guardian Units</h2>
 <div class="grid">
-<div class="card"><div class="status">Timeline Protected</div><img src="azul_box_guardian.png" alt="Azul Guardian"><h3>Azul — Guardian Class</h3><p>Protector of unstable timelines.</p><button disabled>INSPECT</button></div>
-<div class="card"><div class="status">Commanding Seven Realities</div><img src="captain_azul.png" alt="Captain Azul"><h3>Captain Azul</h3><p>Navigating temporal tides.</p><button disabled>INSPECT</button></div>
-<div class="card"><div class="status">Stealth Mode</div><img src="headhunter_azul_boxed_figure.png" alt="Headhunter"><h3>Headhunter Azul</h3><p>Tracking temporal targets.</p><button disabled>INSPECT</button></div>
+<div class="card"><div class="status">Timeline Protected</div><img src="azul_box_guardian.png" alt="Azul Guardian"><h3>Azul — Guardian Class</h3><p>Protector of unstable timelines and cereal vaults.</p><button disabled>INSPECT</button></div>
+<div class="card"><div class="status">Commanding Seven Realities</div><img src="captain_azul.png" alt="Captain Azul"><h3>Captain Azul</h3><p>Navigating temporal tides with style.</p><button disabled>INSPECT</button></div>
+<div class="card"><div class="status">Stealth Mode</div><img src="headhunter_azul_boxed_figure.png" alt="Headhunter"><h3>Headhunter Azul</h3><p>Tracking temporal targets across dimensions.</p><button disabled>INSPECT</button></div>
 </div>
 </section>
 
@@ -76,16 +75,16 @@ footer{padding:40px 20px;text-align:center;border-top:1px solid var(--glass-bord
 <h2 style="border-color: var(--accent-orange);">🔥 Chaos & Culture</h2>
 <div class="grid">
 <div class="card"><div class="status" style="color:var(--accent-orange);">Containment Failed</div><img src="mochkil_rap_figure_box.png" alt="Mochkil Rap"><h3>Mochkil — Rap Figure</h3><p>Cultural disruptor and professional snack thief.</p><button disabled>INSPECT</button></div>
-<div class="card" style="border-color: var(--accent-purple);"><div class="status" style="color: var(--accent-purple); background: rgba(188, 19, 254, 0.1);">Reality Event: 2nd Birthday</div><img src="unicorn_cake_glitch.jpg" alt="Unicorn Cake"><h3>The Unicorn — Sprinkle Apocalypse</h3><p>A sugary singularity altering digestive physics.</p><button disabled>CAKE DETECTED</button></div>
+<div class="card" style="border-color: var(--accent-purple);"><div class="status" style="color: var(--accent-purple); background: rgba(188, 19, 254, 0.1);">Reality Event: 2nd Birthday</div><img src="unicorn_cake_glitch.jpg" alt="Unicorn Cake"><h3>The Unicorn — Sprinkle Apocalypse Edition</h3><p>A sugary singularity that temporarily alters digestive physics.</p><button disabled>CAKE DETECTED</button></div>
 <div class="card"><div class="status" style="color:var(--accent-orange);">Executive Chef</div><img src="commander_in_chef.png" alt="Commander Chef"><h3>Mochkil — Commander in Chef</h3><p>Host of Snack Attack. Michelin-star chaos.</p><button disabled>INSPECT</button></div>
-<div class="card"><div class="status" style="color: var(--accent-cyan);">Player One / Legacy Unit</div><img src="gamer_seth_action_figure.png" alt="Gamer Seth"><h3>Gamer Seth — Pro Edition</h3><p>Master of virtual realms.</p><button disabled>LEGENDARY ARTIFACT</button></div>
+<div class="card"><div class="status" style="color: var(--accent-cyan);">Player One / Legacy Unit</div><img src="gamer_seth_action_figure.png" alt="Gamer Seth"><h3>Gamer Seth — Pro Edition</h3><p>Master of virtual realms. Legend says he can out-game any AI.</p><button disabled>LEGENDARY ARTIFACT</button></div>
 </div>
 </section>
 
 <section class="section">
 <h2 style="border-color: var(--accent-purple);">🌱 Core Reality</h2>
 <div class="grid">
-<div class="card"><div class="status" style="color:var(--accent-purple);">Protected</div><img src="stella_box_doll.png" alt="Stella"><h3>Stella — Chaos Seed</h3><p>Emits joy. Generates laughter.</p><button disabled>INSPECT</button></div>
+<div class="card"><div class="status" style="color:var(--accent-purple);">Protected</div><img src="stella_box_doll.png" alt="Stella"><h3>Stella — Chaos Seed</h3><p>Emits joy. Generates laughter. Softens reality.</p><button disabled>INSPECT</button></div>
 <div class="card"><div class="status" style="color:var(--accent-purple);">Actively Reshaping</div><img src="luna_babydoll_spaghetti.png" alt="Luna"><h3>Luna — Spaghetti Timeline</h3><p>Manipulator of pasta, time, and gravity.</p><button disabled>INSPECT</button></div>
 </div>
 </section>
@@ -93,8 +92,10 @@ footer{padding:40px 20px;text-align:center;border-top:1px solid var(--glass-bord
 <section class="section">
 <h2>📦 Limited Reality Sets</h2>
 <div class="grid">
-<div class="card"><div class="status">Archived</div><img src="group_box_set.png"><h3>Family & Founders Set</h3><button disabled>INSPECT</button></div>
-<div class="card"><div class="status">Special Edition</div><img src="lori_azul_space_adventure_boxedset.png"><h3>Space Adventure Boxed Set</h3><button disabled>OUT OF STOCK</button></div>
+<div class="card"><div class="status">Archived</div><img src="group_box_set.png" alt="Group Set"><h3>Family & Founders Set</h3><p>A bonded unit. Separation not recommended.</p><button disabled>INSPECT</button></div>
+<div class="card"><div class="status">Voyage Ready</div><img src="pirate_adventures_boxed_set.png" alt="Pirate Set"><h3>Pirate Adventures Box Set</h3><p>The crew is ready for unpredictable tides.</p><button disabled>INSPECT</button></div>
+<div class="card"><div class="status">Special Edition</div><img src="lori_azul_space_adventure_boxedset.png" alt="Space Adventure"><h3>Space Adventure Boxed Set</h3><p>Commemorating the "NASA Breach" incident.</p><button disabled>OUT OF STOCK</button></div>
+<div class="card"><div class="status">Rare Artifact</div><img src="lori_space_box.png" alt="Lori Space Box"><h3>Lori — Jupiter Ice Cave Variant</h3><p>Features the "Core Seed" accessory.</p><button disabled>OUT OF STOCK</button></div>
 </div>
 </section>
 
@@ -103,7 +104,13 @@ footer{padding:40px 20px;text-align:center;border-top:1px solid var(--glass-bord
 <div class="grid">
 <div class="card"><img src="azulo_bluberry_vanilla.png"><h3>Azulo Blueberry</h3><button disabled>OFFLINE</button></div>
 <div class="card"><img src="azulos_neon_crunch.png"><h3>Azulo Neon</h3><button disabled>OFFLINE</button></div>
+<div class="card"><img src="summer_azulos.png"><h3>Azulo Summer</h3><button disabled>OFFLINE</button></div>
+<div class="card"><img src="azulos_glitch_cereal.png"><h3>Azulo Glitch</h3><button disabled>OFFLINE</button></div>
+<div class="card"><img src="azulos_galaxy_mix.png"><h3>Azulo Galaxy</h3><button disabled>OFFLINE</button></div>
+<div class="card"><img src="winter_azulos.png"><h3>Azulo Winter</h3><button disabled>OFFLINE</button></div>
+<div class="card"><img src="mochkil_marshmallow_puff.png"><h3>Mochkil Chef Blue</h3><button disabled>OFFLINE</button></div>
 <div class="card"><img src="mochkil_puffs_orange.png"><h3>Mochkil Thief Orange</h3><button disabled>OFFLINE</button></div>
+<div class="card"><img src="mochkil_puffs_dessert_edition.png"><h3>Mochkil Dessert</h3><button disabled>OFFLINE</button></div>
 </div>
 </section>
 
@@ -130,7 +137,6 @@ import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/1
 import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
 const firebaseConfig={apiKey:"AIzaSyA7BUL17_d8j8TIsC1NKOasg0zXavtwVhI",authDomain:"maximum-reality-guestbook.firebaseapp.com",projectId:"maximum-reality-guestbook",storageBucket:"maximum-reality-guestbook.appspot.com",messagingSenderId:"401509956215",appId:"1:401509956215:web:a6863850cd51bc97b7a472",measurementId:"G-FCK7G1F95N"};
-
 const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
 const CREATOR_UID = "F4fwM7oL0IekWsYymwzfkayUc0U2";
 
@@ -145,9 +151,7 @@ onSnapshot(q, s => {
     const msg = data.message || "";
     const e = document.createElement("div");
     e.className = "guestbook-entry";
-    
     let name = "[GUEST]", displayMessage = msg, borderColor = "rgba(0, 242, 255, 0.2)", bgColor = "rgba(0, 242, 255, 0.05)", labelColor = "var(--accent-cyan)", animation = "entryFade 0.5s ease-out";
-
     if (msg.includes("::mr::") || data.userId === CREATOR_UID) {
       name = "[CREATOR]"; displayMessage = msg.replace("::mr::", "").trim(); borderColor = "var(--accent-purple)"; bgColor = "rgba(188, 19, 254, 0.1)"; labelColor = "var(--accent-purple)";
     } else if (msg.includes("::azul::")) {
@@ -155,7 +159,6 @@ onSnapshot(q, s => {
     } else if (msg.includes("::chef::")) {
       name = "[CHEF MOCHKIL] 🍳"; displayMessage = msg.replace("::chef::", "").trim(); borderColor = "var(--accent-orange)"; bgColor = "rgba(255, 140, 0, 0.2)"; labelColor = "var(--accent-orange)"; animation = "mochkilShake 0.3s infinite";
     }
-
     e.style.border = `1px solid ${borderColor}`; e.style.background = bgColor; e.style.marginBottom = "8px"; e.style.padding = "10px"; e.style.borderRadius = "8px"; e.style.animation = animation;
     e.innerHTML = `<span style="color:${labelColor}; font-weight:bold;">${name}:</span> <span style="color:#fff;">${displayMessage}</span>`;
     messagesContainer.appendChild(e);

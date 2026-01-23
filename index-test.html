@@ -95,24 +95,81 @@ signInAnonymously(auth).catch(e=>console.error("Uplink Error:",e));
 
 const messagesContainer=document.getElementById("guestbook-messages"),q=query(collection(db,"guestbookEntries"),orderBy("timestamp","asc"));
 
-onSnapshot(q,s=>{
-  messagesContainer.innerHTML="";
-  s.forEach(d=>{
-    const data=d.data();
-    const e=document.createElement("div");
-    e.className="guestbook-entry";
+/* --- START OF UPDATED UPLINK --- */
+onSnapshot(q, s => {
+  messagesContainer.innerHTML = "";
+  s.forEach(d => {
+    const data = d.data();
+    const msg = data.message || "";
+    const e = document.createElement("div");
+    e.className = "guestbook-entry";
     
-    if(data.userId === CREATOR_UID) {
-      e.style.border = "1px solid var(--accent-purple)";
-      e.style.background = "rgba(188, 19, 254, 0.1)";
-      e.innerHTML = `<span style="color:var(--accent-purple);font-weight:bold;">[CREATOR]:</span> ${data.message}`;
-    } else {
-      e.innerHTML = `<span style="color:var(--accent-cyan);">[GUEST]:</span> ${data.message}`;
+    // Default Guest Settings
+    let name = "[GUEST]";
+    let displayMessage = msg;
+    let borderColor = "rgba(0, 242, 255, 0.2)";
+    let bgColor = "rgba(0, 242, 255, 0.05)";
+    let labelColor = "var(--accent-cyan)";
+    let animation = "entryFade 0.5s ease-out";
+
+    // 1. Creator Mode (The Master Key)
+    if (msg.includes("::mr::") || data.userId === CREATOR_UID) {
+      name = "[CREATOR]";
+      displayMessage = msg.replace("::mr::", "").trim();
+      borderColor = "var(--accent-purple)";
+      bgColor = "rgba(188, 19, 254, 0.1)";
+      labelColor = "var(--accent-purple)";
+    } 
+    // 2. Azul Mode (Quantum Science)
+    else if (msg.includes("::azul::")) {
+      name = "[DR. AZUL] 🧠";
+      displayMessage = msg.replace("::azul::", "").trim();
+      borderColor = "var(--accent-cyan)";
+      bgColor = "rgba(0, 242, 255, 0.15)";
+      labelColor = "var(--accent-cyan)";
+    } 
+    // 3. Mochkil Mode (Chaos & Snacks)
+    else if (msg.includes("::chef::")) {
+      name = "[CHEF MOCHKIL] 🍳";
+      displayMessage = msg.replace("::chef::", "").trim();
+      borderColor = "var(--accent-orange)";
+      bgColor = "rgba(255, 140, 0, 0.2)";
+      labelColor = "var(--accent-orange)";
+      animation = "mochkilShake 0.3s infinite";
     }
+
+    // Apply Styles to the element
+    e.style.border = `1px solid ${borderColor}`;
+    e.style.background = bgColor;
+    e.style.marginBottom = "8px";
+    e.style.padding = "10px";
+    e.style.borderRadius = "8px";
+    e.style.animation = animation;
+
+    e.innerHTML = `<span style="color:${labelColor}; font-weight:bold; font-family:'Courier New', monospace;">${name}:</span> 
+                   <span style="color:#fff;">${displayMessage}</span>`;
+    
     messagesContainer.appendChild(e);
   });
-  messagesContainer.scrollTop=messagesContainer.scrollHeight;
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
 });
+
+// Add this CSS for the Chef's Shake effect
+if (!document.getElementById('mochkil-styles')) {
+  const style = document.createElement('style');
+  style.id = 'mochkil-styles';
+  style.innerHTML = `
+    @keyframes mochkilShake {
+      0% { transform: translate(0,0); }
+      25% { transform: translate(1px, -1px); }
+      50% { transform: translate(-1px, 1px); }
+      75% { transform: translate(1px, 1px); }
+      100% { transform: translate(0,0); }
+    }
+  `;
+  document.head.appendChild(style);
+}
+/* --- END OF UPDATED UPLINK --- */
 
 const guestbookForm=document.getElementById("guestbook-form"),guestbookMessageInput=document.getElementById("guestbook-message");
 guestbookForm.addEventListener("submit",async e=>{

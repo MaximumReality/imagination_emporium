@@ -5,44 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Maximum Reality | Imagination Emporium</title>
   <style>
-    /* Animated Star Field for the Dark Blue Header */
-.star-field {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 400px; /* Focus stars in the header area */
-  overflow: hidden;
-  z-index: -1;
-  pointer-events: none;
-}
-
-.star {
-  position: absolute;
-  background: white;
-  border-radius: 50%;
-  opacity: 0.3;
-  animation: twinkle var(--duration) infinite ease-in-out;
-}
-
-@keyframes twinkle {
-  0%, 100% { transform: scale(1); opacity: 0.3; }
-  50% { transform: scale(1.5); opacity: 0.8; filter: blur(1px); }
-}
-
-/* Add a glowing nebula glow to the top */
-header::before {
-  content: '';
-  position: absolute;
-  top: -100px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 200%;
-  height: 500px;
-  background: radial-gradient(circle, rgba(0, 242, 255, 0.08) 0%, rgba(188, 19, 254, 0.05) 30%, transparent 70%);
-  z-index: -1;
-}
-
     :root {
       --bg-dark: #050508;
       --card-bg: rgba(20, 20, 26, 0.7);
@@ -64,263 +26,130 @@ header::before {
       background-size: 100% 100%, 100% 4px, 3px 100%;
       color: var(--text-main);
       line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    header {
-      text-align: center;
-      padding: 40px 20px;
-    }
+    /* ✨ Star Field ✨ */
+    .star-field { position: absolute; top: 0; left: 0; width: 100%; height: 500px; z-index: -1; pointer-events: none; }
+    .star { position: absolute; background: white; border-radius: 50%; opacity: 0.3; animation: twinkle var(--duration) infinite ease-in-out; }
+    @keyframes twinkle { 0%, 100% { transform: scale(1); opacity: 0.3; } 50% { transform: scale(1.5); opacity: 0.7; } }
 
-    header img {
-      max-width: 280px;
-      filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.4));
-      margin-bottom: 15px;
-    }
+    header { text-align: center; padding: 40px 20px; position: relative; }
+    header img { max-width: 280px; filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.4)); margin-bottom: 15px; }
+    .tagline { font-family: 'Courier New', monospace; font-size: 0.85rem; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 2px; opacity: 0.9; }
 
-    .tagline {
-      font-family: 'Courier New', monospace;
-      font-size: 0.85rem;
-      color: var(--accent-cyan);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      max-width: 600px;
-      margin: 0 auto;
-      opacity: 0.9;
-    }
+    .section { max-width: 1200px; margin: 0 auto; padding: 30px 20px; }
+    h2 { font-family: 'Courier New', monospace; font-size: 1.2rem; border-left: 4px solid var(--accent-cyan); padding-left: 15px; margin-bottom: 25px; text-transform: uppercase; }
 
-    .section {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 30px 20px;
-    }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+    .card { background: var(--card-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid var(--glass-border); border-radius: 18px; padding: 18px; display: flex; flex-direction: column; transition: 0.3s; }
+    .card:hover { transform: translateY(-5px); border-color: var(--accent-cyan); }
+    .card img { width: 100%; border-radius: 10px; margin-bottom: 15px; }
+    .status { font-family: 'Courier New', monospace; font-size: 0.65rem; background: rgba(0, 242, 255, 0.1); color: var(--accent-cyan); padding: 3px 8px; border-radius: 4px; margin-bottom: 12px; width: fit-content; }
+    
+    button { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.05); color: #555; font-family: 'Courier New', monospace; font-size: 0.75rem; cursor: not-allowed; }
 
-    h2 {
-      font-family: 'Courier New', monospace;
-      font-size: 1.3rem;
-      border-left: 4px solid var(--accent-cyan);
-      padding-left: 15px;
-      margin-bottom: 25px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--glass-border);
-      border-radius: 18px;
-      padding: 18px;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      position: relative;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      border-color: var(--accent-cyan);
-      box-shadow: 0 10px 30px rgba(0, 242, 255, 0.15);
-    }
-
-    .card img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 15px;
-      background: #000;
-    }
-
-    .card h3 {
-      font-size: 1rem;
-      margin: 5px 0;
-      color: #fff;
-    }
-
-    .card p {
-      font-size: 0.8rem;
-      opacity: 0.8;
-      margin-bottom: 15px;
-      flex-grow: 1;
-    }
-
-    .status {
-      display: inline-block;
-      font-family: 'Courier New', monospace;
-      font-size: 0.65rem;
-      background: rgba(0, 242, 255, 0.1);
-      color: var(--accent-cyan);
-      padding: 3px 8px;
-      border-radius: 4px;
-      margin-bottom: 12px;
-      width: fit-content;
-    }
-
-    button {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.05);
-      color: #666;
-      font-family: 'Courier New', monospace;
-      font-size: 0.75rem;
-      font-weight: bold;
-      cursor: not-allowed;
-    }
-
-    /* ANIMATIONS */
+    /* Special Animations */
     .card img[src*="azulo"] { animation: realityGlitch 4s infinite; }
     .card img[src*="mochkil_puffs_orange"] { animation: sneakyWiggle 3s ease-in-out infinite; }
-    
-    @keyframes realityGlitch {
-      0%, 100% { filter: hue-rotate(0deg) brightness(1); }
-      50% { filter: hue-rotate(15deg) brightness(1.2); transform: scale(1.01); }
-    }
+    @keyframes realityGlitch { 0%, 100% { filter: hue-rotate(0deg); } 50% { filter: hue-rotate(15deg) brightness(1.1); } }
+    @keyframes sneakyWiggle { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-2deg); } 75% { transform: rotate(2deg); } }
 
-    @keyframes sneakyWiggle {
-      0%, 100% { transform: rotate(0deg); }
-      25% { transform: rotate(-3deg); }
-      75% { transform: rotate(3deg); }
-    }
-
-    footer {
-      padding: 50px 20px;
-      text-align: center;
-      margin-top: 40px;
-      border-top: 1px solid var(--glass-border);
-      font-size: 0.7rem;
-      opacity: 0.6;
-    }
+    footer { padding: 40px 20px; text-align: center; border-top: 1px solid var(--glass-border); font-size: 0.7rem; opacity: 0.5; }
   </style>
 </head>
 <body>
-  <body>
+
   <div class="star-field" id="starField"></div>
-
-  <script>
-    const field = document.getElementById('starField');
-    const starCount = 60;
-
-    for (let i = 0; i < starCount; i++) {
-      const star = document.createElement('div');
-      star.className = 'star';
-      
-      // Random position
-      const x = Math.random() * 100;
-      const y = Math.random() * 100;
-      
-      // Random size (tiny to small)
-      const size = Math.random() * 3 + 1;
-      
-      // Random animation speed
-      const duration = Math.random() * 3 + 2;
-
-      star.style.left = `${x}%`;
-      star.style.top = `${y}%`;
-      star.style.width = `${size}px`;
-      star.style.height = `${size}px`;
-      star.style.setProperty('--duration', `${duration}s`);
-      
-      field.appendChild(star);
-    }
-  </script>
 
   <header>
     <img src="store_sign.png" alt="Maximum Reality">
-    <div class="tagline">Artifacts from Adjacent Realities // Simulation 14-Pro-Max Active</div>
+    <div class="tagline">Artifacts from Adjacent Realities // Simulation Active</div>
   </header>
 
   <section class="section">
     <h2>🧠 Reality Science Division</h2>
     <div class="grid">
       <div class="card">
-        <div class="status">Quantum Signature Detected</div>
+        <div class="status">Quantum Signature</div>
         <img src="dr_azul_box.png" alt="Dr. Azul">
-        <h3>Dr. Azul — Reality Science Division</h3>
-        <p>Chief researcher of improbable outcomes. Solving problems that technically should not exist.</p>
-        <button disabled>INSPECT ARTIFACT</button>
+        <h3>Dr. Azul — Reality Science</h3>
+        <p>Chief researcher of improbable outcomes. Solving non-existent problems.</p>
+        <button disabled>INSPECT</button>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <h2>🛡️ Guardian & Variant Units</h2>
+    <h2>🛡️ Guardian Units</h2>
     <div class="grid">
       <div class="card">
         <div class="status">Timeline Protected</div>
         <img src="azul_box_guardian.png" alt="Azul Guardian">
         <h3>Azul — Guardian Class</h3>
-        <p>Assigned to protect unstable timelines, cereal vaults, and minor dimensions.</p>
-        <button disabled>INSPECT ARTIFACT</button>
+        <p>Protector of unstable timelines and cereal vaults.</p>
+        <button disabled>INSPECT</button>
       </div>
       <div class="card">
         <div class="status">Commanding Seven Realities</div>
         <img src="captain_azul.png" alt="Captain Azul">
         <h3>Captain Azul</h3>
-        <p>Fearless pirate captain navigating temporal tides with impeccable style.</p>
-        <button disabled>INSPECT ARTIFACT</button>
+        <p>Navigating temporal tides with style.</p>
+        <button disabled>INSPECT</button>
       </div>
       <div class="card">
-        <div class="status">Stealth Mode Active</div>
-        <img src="headhunter_azul_boxed_figure.png" alt="Headhunter Azul">
+        <div class="status">Stealth Mode</div>
+        <img src="headhunter_azul_boxed_figure.png" alt="Headhunter">
         <h3>Headhunter Azul</h3>
-        <p>Stealthy operations across multiple dimensions tracking temporal targets.</p>
-        <button disabled>INSPECT ARTIFACT</button>
+        <p>Tracking temporal targets across dimensions.</p>
+        <button disabled>INSPECT</button>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <h2 style="border-color: var(--accent-orange);">🔥 Chaos & Culture Division</h2>
+    <h2 style="border-color: var(--accent-orange);">🔥 Chaos & Culture</h2>
     <div class="grid">
-      <div class="card" style="border-color: rgba(255, 140, 0, 0.2);">
-        <div class="status" style="color: var(--accent-orange); background: rgba(255, 140, 0, 0.1);">Containment Failed</div>
+      <div class="card">
+        <div class="status" style="color:var(--accent-orange);">Containment Failed</div>
         <img src="mochkil_rap_figure_box.png" alt="Mochkil Rap">
-        <h3>Mochkil — Rap Figure Edition</h3>
-        <p>Cultural disruptor. Snack thief. Not authorized for corporate shelving.</p>
-        <button disabled>INSPECT ARTIFACT</button>
+        <h3>Mochkil — Rap Figure</h3>
+        <p>Cultural disruptor and professional snack thief.</p>
+        <button disabled>INSPECT</button>
       </div>
-      <div class="card" style="border-color: rgba(255, 140, 0, 0.2);">
-        <div class="status" style="color: var(--accent-orange); background: rgba(255, 140, 0, 0.1);">Executive Kitchens</div>
-        <img src="commander_in_chef.png" alt="Commander in Chef">
+      <div class="card">
+        <div class="status" style="color:var(--accent-orange);">Executive Chef</div>
+        <img src="commander_in_chef.png" alt="Commander Chef">
         <h3>Mochkil — Commander in Chef</h3>
-        <p>Presidential Mochkil. Oversees culinary chaos with style and authority.</p>
-        <button disabled>INSPECT ARTIFACT</button>
+        <p>Host of Snack Attack. Michelin-star chaos.</p>
+        <button disabled>INSPECT</button>
       </div>
-      <div class="card" style="border-color: rgba(255, 140, 0, 0.2);">
-        <div class="status" style="color: var(--accent-orange); background: rgba(255, 140, 0, 0.1);">Currently Online</div>
+      <div class="card">
+        <div class="status" style="color:var(--accent-orange);">Online</div>
         <img src="gamer_seth_action_figure.png" alt="Gamer Seth">
         <h3>Gamer Seth</h3>
-        <p>Master of virtual reality snack battles. Always plugged in and ready for chaos.</p>
-        <button disabled>INSPECT ARTIFACT</button>
+        <p>Master of virtual reality snack battles.</p>
+        <button disabled>INSPECT</button>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <h2 style="border-color: var(--accent-purple);">🌱 Core Reality Units</h2>
+    <h2 style="border-color: var(--accent-purple);">🌱 Core Reality</h2>
     <div class="grid">
-      <div class="card" style="border-color: rgba(188, 19, 254, 0.2);">
-        <div class="status" style="color: var(--accent-purple); background: rgba(188, 19, 254, 0.1);">Protected</div>
-        <img src="stella_box_doll.png" alt="Stella Doll">
-        <h3>Stella — Smiling Chaos Seed</h3>
-        <p>Emits joy. Generates laughter. Causes minor reality softening.</p>
-        <button disabled>INSPECT ARTIFACT</button>
+      <div class="card">
+        <div class="status" style="color:var(--accent-purple);">Protected</div>
+        <img src="stella_box_doll.png" alt="Stella">
+        <h3>Stella — Chaos Seed</h3>
+        <p>Emits joy. Generates laughter. Softens reality.</p>
+        <button disabled>INSPECT</button>
       </div>
-      <div class="card" style="border-color: rgba(188, 19, 254, 0.2);">
-        <div class="status" style="color: var(--accent-purple); background: rgba(188, 19, 254, 0.1);">Reshaping Reality</div>
-        <img src="luna_babydoll_spaghetti.png" alt="Luna Spaghetti">
-        <h3>Luna — Spaghetti Timeline Edition</h3>
-        <p>Reality explorer known to manipulate pasta, time, and emotional gravity.</p>
-        <button disabled>INSPECT ARTIFACT</button>
+      <div class="card">
+        <div class="status" style="color:var(--accent-purple);">Actively Reshaping</div>
+        <img src="luna_babydoll_spaghetti.png" alt="Luna">
+        <h3>Luna — Spaghetti Timeline</h3>
+        <p>Manipulator of pasta, time, and gravity.</p>
+        <button disabled>INSPECT</button>
       </div>
     </div>
   </section>
@@ -331,108 +160,66 @@ header::before {
       <div class="card">
         <div class="status">Archived</div>
         <img src="group_box_set.png" alt="Group Set">
-        <h3>Family & Founders Edition</h3>
-        <p>A bonded unit. Separation across timelines not recommended.</p>
-        <button disabled>INSPECT ARTIFACT</button>
+        <h3>Family & Founders Set</h3>
+        <p>A bonded unit. Separation not recommended.</p>
+        <button disabled>INSPECT</button>
       </div>
       <div class="card">
-        <div class="status">Ready for Voyage</div>
+        <div class="status">Voyage Ready</div>
         <img src="pirate_adventures_boxed_set.png" alt="Pirate Set">
-        <h3>Pirate Adventures Boxed Set</h3>
-        <p>Includes Luna, Stella, Mochkil, and Captain Azul. Set sail for unpredictability.</p>
-        <button disabled>INSPECT ARTIFACT</button>
+        <h3>Pirate Adventures Box Set</h3>
+        <p>The crew is ready for unpredictable tides.</p>
+        <button disabled>INSPECT</button>
       </div>
       <div class="card">
-        <div class="status">Ready for Launch</div>
-        <img src="lori_azul_space_adventure_boxedset.png" alt="Space Set">
-        <h3>Lori & Azul Space Adventure</h3>
-        <p>Explore cosmic anomalies and floating snack stations.</p>
-        <button disabled>INSPECT ARTIFACT</button>
+        <div class="status">Launch Ready</div>
+        <img src="lori_azul_space_adventure_boxedset.png" alt="Space Adventure">
+        <h3>Lori & Azul Space Set</h3>
+        <p>Cosmic anomalies and snack stations.</p>
+        <button disabled>INSPECT</button>
       </div>
       <div class="card">
-        <div class="status">Orbital Exploration</div>
+        <div class="status">Orbital</div>
         <img src="lori_space_box.png" alt="Lori Space">
-        <h3>Lori — Solo Space Expedition</h3>
-        <p>Solo explorer equipped with zero-gravity snack containment.</p>
-        <button disabled>INSPECT ARTIFACT</button>
+        <h3>Lori — Solo Expedition</h3>
+        <p>Zero-gravity curiosity and containment.</p>
+        <button disabled>INSPECT</button>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <h2 style="border-left-color: #ffffff;">🥣 The Glitch Pantry</h2>
+    <h2>🥣 The Glitch Pantry</h2>
     <div class="grid">
-      <div class="card">
-        <div class="status">Glitching Timelines</div>
-        <img src="azulo_bluberry_vanilla.png" alt="Azulo Blueberry">
-        <h3>Azulo — Blueberry Vanilla</h3>
-        <p>Bioluminescent morsels that temporarily destabilize taste perception.</p>
-        <button disabled>UNAVAILABLE</button>
-      </div>
-      <div class="card">
-        <div class="status">Neon Anomalies</div>
-        <img src="azulos_neon_crunch.png" alt="Azulo Neon">
-        <h3>Azulo — Neon Crunch</h3>
-        <p>Bioluminescent neon bites that spark minor taste anomalies.</p>
-        <button disabled>UNAVAILABLE</button>
-      </div>
-      <div class="card">
-        <div class="status">Melting Timelines</div>
-        <img src="summer_azulos.png" alt="Azulo Summer">
-        <h3>Azulo — Summer Edition</h3>
-        <p>Sunny tropical crunch with extra reality juice.</p>
-        <button disabled>UNAVAILABLE</button>
-      </div>
-      <div class="card">
-        <div class="status">Physics Warning</div>
-        <img src="azulos_glitch_cereal.png" alt="Azulo Glitch">
-        <h3>Azulo — Glitch Edition</h3>
-        <p>Randomly shifting flavors. May destabilize breakfast physics.</p>
-        <button disabled>UNAVAILABLE</button>
-      </div>
-      <div class="card">
-        <div class="status">Flavor Nebula</div>
-        <img src="azulos_galaxy_mix.png" alt="Azulo Galaxy">
-        <h3>Azulo — Galaxy Mix Edition</h3>
-        <p>Rainbow cosmic morsels distorting taste across timelines.</p>
-        <button disabled>UNAVAILABLE</button>
-      </div>
-      <div class="card">
-        <div class="status">Stabilizing Cold</div>
-        <img src="winter_azulos.png" alt="Azulo Winter">
-        <h3>Azulo — Winter Edition</h3>
-        <p>Icy crisp cereal that temporarily freezes small anomalies.</p>
-        <button disabled>UNAVAILABLE</button>
-      </div>
-      <div class="card">
-        <div class="status">Cooking Chaos</div>
-        <img src="mochkil_marshmallow_puff.png" alt="Mochkil Blue">
-        <h3>Mochkil — Chef Edition (Blue)</h3>
-        <p>Steak & sushi shaped marshmallow morsels. Culinary chaos.</p>
-        <button disabled>UNAVAILABLE</button>
-      </div>
-      <div class="card">
-        <div class="status">Containment Failed</div>
-        <img src="mochkil_puffs_orange.png" alt="Mochkil Orange">
-        <h3>Mochkil — Thief Edition (Orange)</h3>
-        <p>Plain puffs with chaotic crunch. Will disappear mysteriously.</p>
-        <button disabled>UNAVAILABLE</button>
-      </div>
-      <div class="card">
-        <div class="status">Sweetening Realities</div>
-        <img src="mochkil_puffs_dessert_edition.png" alt="Mochkil Dessert">
-        <h3>Mochkil — Dessert Edition</h3>
-        <p>Marshmallows shaped like pastries. Sweet chaos in bite-sized form.</p>
-        <button disabled>UNAVAILABLE</button>
-      </div>
+      <div class="card"><img src="azulo_bluberry_vanilla.png"><h3>Azulo Blueberry</h3><button disabled>OFFLINE</button></div>
+      <div class="card"><img src="azulos_neon_crunch.png"><h3>Azulo Neon</h3><button disabled>OFFLINE</button></div>
+      <div class="card"><img src="summer_azulos.png"><h3>Azulo Summer</h3><button disabled>OFFLINE</button></div>
+      <div class="card"><img src="azulos_glitch_cereal.png"><h3>Azulo Glitch</h3><button disabled>OFFLINE</button></div>
+      <div class="card"><img src="azulos_galaxy_mix.png"><h3>Azulo Galaxy</h3><button disabled>OFFLINE</button></div>
+      <div class="card"><img src="winter_azulos.png"><h3>Azulo Winter</h3><button disabled>OFFLINE</button></div>
+      <div class="card"><img src="mochkil_marshmallow_puff.png"><h3>Mochkil Chef Blue</h3><button disabled>OFFLINE</button></div>
+      <div class="card"><img src="mochkil_puffs_orange.png"><h3>Mochkil Thief Orange</h3><button disabled>OFFLINE</button></div>
+      <div class="card"><img src="mochkil_puffs_dessert_edition.png"><h3>Mochkil Dessert</h3><button disabled>OFFLINE</button></div>
     </div>
   </section>
 
   <footer>
-    <p>✨ MAXIMUM REALITY IMAGINATION EMPORIUM</p>
-    <p>Everything is Canon. No items for sale.</p>
-    <p>If cereal manifests in your home, notify Dr. Azul immediately.</p>
+    <p>✨ MAXIMUM REALITY IMAGINATION EMPORIUM // NO ITEMS FOR SALE</p>
   </footer>
 
+  <script>
+    const field = document.getElementById('starField');
+    for (let i = 0; i < 50; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      const size = Math.random() * 2 + 1;
+      star.style.width = size + 'px';
+      star.style.height = size + 'px';
+      star.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
+      field.appendChild(star);
+    }
+  </script>
 </body>
 </html>

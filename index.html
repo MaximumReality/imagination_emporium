@@ -10,13 +10,14 @@
       --card-bg: rgba(20, 20, 26, 0.7);
       --accent-cyan: #00f2ff;
       --accent-orange: #ff8c00;
+      --accent-purple: #bc13fe;
       --text-main: #e0e0e0;
       --glass-border: rgba(255, 255, 255, 0.1);
     }
 
     body {
       margin: 0;
-      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: var(--bg-dark);
       background-image: 
         radial-gradient(circle at 50% 0%, #1a1a2e 0%, #050508 70%),
@@ -30,44 +31,46 @@
 
     header {
       text-align: center;
-      padding: 60px 20px;
+      padding: 40px 20px;
     }
 
     header img {
-      max-width: 300px;
+      max-width: 280px;
       filter: drop-shadow(0 0 15px rgba(0, 242, 255, 0.4));
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     .tagline {
       font-family: 'Courier New', monospace;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--accent-cyan);
       text-transform: uppercase;
       letter-spacing: 2px;
       max-width: 600px;
       margin: 0 auto;
+      opacity: 0.9;
     }
 
     .section {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 30px 20px;
     }
 
     h2 {
       font-family: 'Courier New', monospace;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       border-left: 4px solid var(--accent-cyan);
       padding-left: 15px;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
       text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 25px;
+      gap: 20px;
     }
 
     .card {
@@ -75,95 +78,88 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 20px;
+      border-radius: 18px;
+      padding: 18px;
       transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
     .card:hover {
-      transform: translateY(-10px);
+      transform: translateY(-8px);
       border-color: var(--accent-cyan);
       box-shadow: 0 10px 30px rgba(0, 242, 255, 0.15);
     }
 
     .card img {
       width: 100%;
-      border-radius: 12px;
+      height: auto;
+      border-radius: 10px;
       margin-bottom: 15px;
       background: #000;
     }
 
     .card h3 {
-      font-size: 1.1rem;
-      margin: 10px 0;
+      font-size: 1rem;
+      margin: 5px 0;
       color: #fff;
     }
 
     .card p {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       opacity: 0.8;
-      min-height: 50px;
+      margin-bottom: 15px;
+      flex-grow: 1;
     }
 
     .status {
       display: inline-block;
       font-family: 'Courier New', monospace;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       background: rgba(0, 242, 255, 0.1);
       color: var(--accent-cyan);
-      padding: 4px 10px;
+      padding: 3px 8px;
       border-radius: 4px;
-      margin-bottom: 15px;
+      margin-bottom: 12px;
+      width: fit-content;
     }
 
     button {
       width: 100%;
-      padding: 12px;
-      border-radius: 10px;
+      padding: 10px;
+      border-radius: 8px;
       border: 1px solid rgba(255,255,255,0.1);
       background: rgba(255,255,255,0.05);
-      color: #777;
+      color: #666;
       font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
       font-weight: bold;
       cursor: not-allowed;
     }
 
-    /* SPECIFIC ANIMATIONS */
-    .card img[src*="azulo"] {
-      animation: realityGlitch 4s infinite;
-    }
-
-    .card img[src*="mochkil_puffs_orange"] {
-      animation: sneakyWiggle 3s ease-in-out infinite;
-    }
-
+    /* ANIMATIONS */
+    .card img[src*="azulo"] { animation: realityGlitch 4s infinite; }
+    .card img[src*="mochkil_puffs_orange"] { animation: sneakyWiggle 3s ease-in-out infinite; }
+    
     @keyframes realityGlitch {
       0%, 100% { filter: hue-rotate(0deg) brightness(1); }
       50% { filter: hue-rotate(15deg) brightness(1.2); transform: scale(1.01); }
-      52% { filter: contrast(1.5); transform: translateX(2px); }
     }
 
     @keyframes sneakyWiggle {
       0%, 100% { transform: rotate(0deg); }
-      25% { transform: rotate(-3deg) scale(0.98); }
-      75% { transform: rotate(3deg) scale(1.02); }
+      25% { transform: rotate(-3deg); }
+      75% { transform: rotate(3deg); }
     }
 
     footer {
-      padding: 60px 20px;
+      padding: 50px 20px;
       text-align: center;
-      background: rgba(0, 0, 0, 0.5);
-      margin-top: 50px;
+      margin-top: 40px;
       border-top: 1px solid var(--glass-border);
-    }
-
-    footer p {
-      font-size: 0.75rem;
-      max-width: 500px;
-      margin: 10px auto;
-      opacity: 0.5;
+      font-size: 0.7rem;
+      opacity: 0.6;
     }
   </style>
 </head>
@@ -171,7 +167,7 @@
 
   <header>
     <img src="store_sign.png" alt="Maximum Reality">
-    <div class="tagline">Artifacts from Adjacent Realities // [STATUS: SIMULATION ACTIVE]</div>
+    <div class="tagline">Artifacts from Adjacent Realities // Simulation 14-Pro-Max Active</div>
   </header>
 
   <section class="section">
@@ -180,77 +176,194 @@
       <div class="card">
         <div class="status">Quantum Signature Detected</div>
         <img src="dr_azul_box.png" alt="Dr. Azul">
-        <h3>Dr. Azul — Chief Researcher</h3>
-        <p>Expert in solving technical impossibilities and managing "Mochkil-level" chaos.</p>
-        <button disabled>ACCESS RESTRICTED</button>
+        <h3>Dr. Azul — Reality Science Division</h3>
+        <p>Chief researcher of improbable outcomes. Solving problems that technically should not exist.</p>
+        <button disabled>INSPECT ARTIFACT</button>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <h2>🛡️ Guardians & Explorers</h2>
+    <h2>🛡️ Guardian & Variant Units</h2>
     <div class="grid">
       <div class="card">
         <div class="status">Timeline Protected</div>
         <img src="azul_box_guardian.png" alt="Azul Guardian">
         <h3>Azul — Guardian Class</h3>
-        <p>Defending the multiverse, one cereal vault at a time.</p>
-        <button disabled>INSPECT</button>
+        <p>Assigned to protect unstable timelines, cereal vaults, and minor dimensions.</p>
+        <button disabled>INSPECT ARTIFACT</button>
       </div>
       <div class="card">
-        <div class="status">High Seas Active</div>
+        <div class="status">Commanding Seven Realities</div>
         <img src="captain_azul.png" alt="Captain Azul">
         <h3>Captain Azul</h3>
-        <p>Navigating the Seven Realities via temporal pirate currents.</p>
-        <button disabled>INSPECT</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" style="--accent-cyan: var(--accent-orange);">
-    <h2 style="border-color: var(--accent-orange);">🔥 Chaos Division</h2>
-    <div class="grid">
-      <div class="card" style="border-color: rgba(255, 140, 0, 0.2);">
-        <div class="status" style="color: var(--accent-orange); background: rgba(255, 140, 0, 0.1);">Containment Level: Critical</div>
-        <img src="mochkil_rap_figure_box.png" alt="Mochkil Rap">
-        <h3>Mochkil — Rap Edition</h3>
-        <p>Maximum Reality's premier snack thief and cultural disruptor.</p>
-        <button disabled>INSPECT</button>
+        <p>Fearless pirate captain navigating temporal tides with impeccable style.</p>
+        <button disabled>INSPECT ARTIFACT</button>
       </div>
       <div class="card">
-        <div class="status" style="color: var(--accent-orange); background: rgba(255, 140, 0, 0.1);">Culinary Chaos</div>
-        <img src="commander_in_chef.png" alt="Commander in Chef">
-        <h3>Mochkil — Commander in Chef</h3>
-        <p>Host of Snack Attack. Michelin stars achieved via total chaos.</p>
-        <button disabled>INSPECT</button>
+        <div class="status">Stealth Mode Active</div>
+        <img src="headhunter_azul_boxed_figure.png" alt="Headhunter Azul">
+        <h3>Headhunter Azul</h3>
+        <p>Stealthy operations across multiple dimensions tracking temporal targets.</p>
+        <button disabled>INSPECT ARTIFACT</button>
       </div>
     </div>
   </section>
 
   <section class="section">
-    <h2>🥣 The Glitch Pantry</h2>
+    <h2 style="border-color: var(--accent-orange);">🔥 Chaos & Culture Division</h2>
+    <div class="grid">
+      <div class="card" style="border-color: rgba(255, 140, 0, 0.2);">
+        <div class="status" style="color: var(--accent-orange); background: rgba(255, 140, 0, 0.1);">Containment Failed</div>
+        <img src="mochkil_rap_figure_box.png" alt="Mochkil Rap">
+        <h3>Mochkil — Rap Figure Edition</h3>
+        <p>Cultural disruptor. Snack thief. Not authorized for corporate shelving.</p>
+        <button disabled>INSPECT ARTIFACT</button>
+      </div>
+      <div class="card" style="border-color: rgba(255, 140, 0, 0.2);">
+        <div class="status" style="color: var(--accent-orange); background: rgba(255, 140, 0, 0.1);">Executive Kitchens</div>
+        <img src="commander_in_chef.png" alt="Commander in Chef">
+        <h3>Mochkil — Commander in Chef</h3>
+        <p>Presidential Mochkil. Oversees culinary chaos with style and authority.</p>
+        <button disabled>INSPECT ARTIFACT</button>
+      </div>
+      <div class="card" style="border-color: rgba(255, 140, 0, 0.2);">
+        <div class="status" style="color: var(--accent-orange); background: rgba(255, 140, 0, 0.1);">Currently Online</div>
+        <img src="gamer_seth_action_figure.png" alt="Gamer Seth">
+        <h3>Gamer Seth</h3>
+        <p>Master of virtual reality snack battles. Always plugged in and ready for chaos.</p>
+        <button disabled>INSPECT ARTIFACT</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 style="border-color: var(--accent-purple);">🌱 Core Reality Units</h2>
+    <div class="grid">
+      <div class="card" style="border-color: rgba(188, 19, 254, 0.2);">
+        <div class="status" style="color: var(--accent-purple); background: rgba(188, 19, 254, 0.1);">Protected</div>
+        <img src="stella_box_doll.png" alt="Stella Doll">
+        <h3>Stella — Smiling Chaos Seed</h3>
+        <p>Emits joy. Generates laughter. Causes minor reality softening.</p>
+        <button disabled>INSPECT ARTIFACT</button>
+      </div>
+      <div class="card" style="border-color: rgba(188, 19, 254, 0.2);">
+        <div class="status" style="color: var(--accent-purple); background: rgba(188, 19, 254, 0.1);">Reshaping Reality</div>
+        <img src="luna_babydoll_spaghetti.png" alt="Luna Spaghetti">
+        <h3>Luna — Spaghetti Timeline Edition</h3>
+        <p>Reality explorer known to manipulate pasta, time, and emotional gravity.</p>
+        <button disabled>INSPECT ARTIFACT</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>📦 Limited Reality Sets</h2>
     <div class="grid">
       <div class="card">
-        <div class="status">Flavor Glitch: 14%</div>
-        <img src="azulo_bluberry_vanilla.png" alt="Azulo">
+        <div class="status">Archived</div>
+        <img src="group_box_set.png" alt="Group Set">
+        <h3>Family & Founders Edition</h3>
+        <p>A bonded unit. Separation across timelines not recommended.</p>
+        <button disabled>INSPECT ARTIFACT</button>
+      </div>
+      <div class="card">
+        <div class="status">Ready for Voyage</div>
+        <img src="pirate_adventures_boxed_set.png" alt="Pirate Set">
+        <h3>Pirate Adventures Boxed Set</h3>
+        <p>Includes Luna, Stella, Mochkil, and Captain Azul. Set sail for unpredictability.</p>
+        <button disabled>INSPECT ARTIFACT</button>
+      </div>
+      <div class="card">
+        <div class="status">Ready for Launch</div>
+        <img src="lori_azul_space_adventure_boxedset.png" alt="Space Set">
+        <h3>Lori & Azul Space Adventure</h3>
+        <p>Explore cosmic anomalies and floating snack stations.</p>
+        <button disabled>INSPECT ARTIFACT</button>
+      </div>
+      <div class="card">
+        <div class="status">Orbital Exploration</div>
+        <img src="lori_space_box.png" alt="Lori Space">
+        <h3>Lori — Solo Space Expedition</h3>
+        <p>Solo explorer equipped with zero-gravity snack containment.</p>
+        <button disabled>INSPECT ARTIFACT</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 style="border-left-color: #ffffff;">🥣 The Glitch Pantry</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="status">Glitching Timelines</div>
+        <img src="azulo_bluberry_vanilla.png" alt="Azulo Blueberry">
         <h3>Azulo — Blueberry Vanilla</h3>
-        <p>Bioluminescent crunch for reality-hopping breakfasts.</p>
+        <p>Bioluminescent morsels that temporarily destabilize taste perception.</p>
         <button disabled>UNAVAILABLE</button>
       </div>
       <div class="card">
-        <div class="status">Thief Alert!</div>
-        <img src="mochkil_puffs_orange.png" alt="Mochkil Puffs">
-        <h3>Mochkil — Thief Edition</h3>
-        <p>Plain puffs. Highly stealable. Keep eyes locked on box.</p>
-        <button disabled>MISSING FROM SHELF</button>
+        <div class="status">Neon Anomalies</div>
+        <img src="azulos_neon_crunch.png" alt="Azulo Neon">
+        <h3>Azulo — Neon Crunch</h3>
+        <p>Bioluminescent neon bites that spark minor taste anomalies.</p>
+        <button disabled>UNAVAILABLE</button>
+      </div>
+      <div class="card">
+        <div class="status">Melting Timelines</div>
+        <img src="summer_azulos.png" alt="Azulo Summer">
+        <h3>Azulo — Summer Edition</h3>
+        <p>Sunny tropical crunch with extra reality juice.</p>
+        <button disabled>UNAVAILABLE</button>
+      </div>
+      <div class="card">
+        <div class="status">Physics Warning</div>
+        <img src="azulos_glitch_cereal.png" alt="Azulo Glitch">
+        <h3>Azulo — Glitch Edition</h3>
+        <p>Randomly shifting flavors. May destabilize breakfast physics.</p>
+        <button disabled>UNAVAILABLE</button>
+      </div>
+      <div class="card">
+        <div class="status">Flavor Nebula</div>
+        <img src="azulos_galaxy_mix.png" alt="Azulo Galaxy">
+        <h3>Azulo — Galaxy Mix Edition</h3>
+        <p>Rainbow cosmic morsels distorting taste across timelines.</p>
+        <button disabled>UNAVAILABLE</button>
+      </div>
+      <div class="card">
+        <div class="status">Stabilizing Cold</div>
+        <img src="winter_azulos.png" alt="Azulo Winter">
+        <h3>Azulo — Winter Edition</h3>
+        <p>Icy crisp cereal that temporarily freezes small anomalies.</p>
+        <button disabled>UNAVAILABLE</button>
+      </div>
+      <div class="card">
+        <div class="status">Cooking Chaos</div>
+        <img src="mochkil_marshmallow_puff.png" alt="Mochkil Blue">
+        <h3>Mochkil — Chef Edition (Blue)</h3>
+        <p>Steak & sushi shaped marshmallow morsels. Culinary chaos.</p>
+        <button disabled>UNAVAILABLE</button>
+      </div>
+      <div class="card">
+        <div class="status">Containment Failed</div>
+        <img src="mochkil_puffs_orange.png" alt="Mochkil Orange">
+        <h3>Mochkil — Thief Edition (Orange)</h3>
+        <p>Plain puffs with chaotic crunch. Will disappear mysteriously.</p>
+        <button disabled>UNAVAILABLE</button>
+      </div>
+      <div class="card">
+        <div class="status">Sweetening Realities</div>
+        <img src="mochkil_puffs_dessert_edition.png" alt="Mochkil Dessert">
+        <h3>Mochkil — Dessert Edition</h3>
+        <p>Marshmallows shaped like pastries. Sweet chaos in bite-sized form.</p>
+        <button disabled>UNAVAILABLE</button>
       </div>
     </div>
   </section>
 
   <footer>
-    <p>MAXIMUM REALITY IMAGINATION EMPORIUM</p>
-    <p>Everything is Canon. Nothing is for Sale.</p>
-    <p>Designed for iPhone 14 Pro Max Reality-Link.</p>
+    <p>✨ MAXIMUM REALITY IMAGINATION EMPORIUM</p>
+    <p>Everything is Canon. No items for sale.</p>
+    <p>If cereal manifests in your home, notify Dr. Azul immediately.</p>
   </footer>
 
 </body>

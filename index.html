@@ -5,6 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Maximum Reality | Imagination Emporium</title>
   <style>
+    /* Animated Star Field for the Dark Blue Header */
+.star-field {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 400px; /* Focus stars in the header area */
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.3;
+  animation: twinkle var(--duration) infinite ease-in-out;
+}
+
+@keyframes twinkle {
+  0%, 100% { transform: scale(1); opacity: 0.3; }
+  50% { transform: scale(1.5); opacity: 0.8; filter: blur(1px); }
+}
+
+/* Add a glowing nebula glow to the top */
+header::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200%;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 242, 255, 0.08) 0%, rgba(188, 19, 254, 0.05) 30%, transparent 70%);
+  z-index: -1;
+}
+
     :root {
       --bg-dark: #050508;
       --card-bg: rgba(20, 20, 26, 0.7);
@@ -164,6 +202,43 @@
   </style>
 </head>
 <body>
+  <body>
+  <div class="star-field" id="starField"></div>
+
+  <script>
+    const field = document.getElementById('starField');
+    const starCount = 60;
+
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      
+      // Random position
+      const x = Math.random() * 100;
+      const y = Math.random() * 100;
+      
+      // Random size (tiny to small)
+      const size = Math.random() * 3 + 1;
+      
+      // Random animation speed
+      const duration = Math.random() * 3 + 2;
+
+      star.style.left = `${x}%`;
+      star.style.top = `${y}%`;
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      star.style.setProperty('--duration', `${duration}s`);
+      
+      field.appendChild(star);
+    }
+  </script>
+
+  <header>
+    <img src="store_sign.png" alt="Maximum Reality">
+    <div class="tagline">Artifacts from Adjacent Realities // Simulation 14-Pro-Max Active</div>
+  </header>
+  
+
 
   <header>
     <img src="store_sign.png" alt="Maximum Reality">

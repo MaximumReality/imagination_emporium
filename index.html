@@ -144,45 +144,97 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebas
 import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 import { getFirestore, collection, addDoc, query, orderBy, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
 
-const firebaseConfig={apiKey:"AIzaSyA7BUL17_d8j8TIsC1NKOasg0zXavtwVhI",authDomain:"maximum-reality-guestbook.firebaseapp.com",projectId:"maximum-reality-guestbook",storageBucket:"maximum-reality-guestbook.appspot.com",messagingSenderId:"401509956215",appId:"1:401509956215:web:a6863850cd51bc97b7a472",measurementId:"G-FCK7G1F95N"};
-const app=initializeApp(firebaseConfig),auth=getAuth(app),db=getFirestore(app);
+const firebaseConfig = {
+  apiKey: "AIzaSyA7BUL17_d8j8TIsC1NKOasg0zXavtwVhI",
+  authDomain: "maximum-reality-guestbook.firebaseapp.com",
+  projectId: "maximum-reality-guestbook",
+  storageBucket: "maximum-reality-guestbook.appspot.com",
+  messagingSenderId: "401509956215",
+  appId: "1:401509956215:web:a6863850cd51bc97b7a472",
+  measurementId: "G-FCK7G1F95N"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
 const CREATOR_UID = "F4fwM7oL0IekWsYymwzfkayUc0U2";
 
-signInAnonymously(auth).catch(e=>console.error("Uplink Error:",e));
+signInAnonymously(auth).catch(e => console.error("Uplink Error:", e));
 
-const messagesContainer=document.getElementById("guestbook-messages"),q=query(collection(db,"guestbookEntries"),orderBy("timestamp","asc"));
+const messagesContainer = document.getElementById("guestbook-messages");
+const q = query(collection(db, "guestbookEntries"), orderBy("timestamp", "asc"));
 
-onSnapshot(q, s => {
+onSnapshot(q, snapshot => {
   messagesContainer.innerHTML = "";
-  s.forEach(d => {
-    const data = d.data();
+  snapshot.forEach(doc => {
+    const data = doc.data();
     const msg = data.message || "";
+
     const e = document.createElement("div");
     e.className = "guestbook-entry";
-    let name = "[GUEST]", displayMessage = msg, borderColor = "rgba(0, 242, 255, 0.2)", bgColor = "rgba(0, 242, 255, 0.05)", labelColor = "var(--accent-cyan)", animation = "entryFade 0.5s ease-out";
-    if (msg.includes("::mr::") || data.userId === CREATOR_UID) {
-      name = "[CREATOR]"; displayMessage = msg.replace("::mr::", "").trim(); borderColor = "var(--accent-purple)"; bgColor = "rgba(188, 19, 254, 0.1)"; labelColor = "var(--accent-purple)";
-    } else if (msg.includes("::azul::")) {
-      name = "[DR. AZUL] 🧠"; displayMessage = msg.replace("::azul::", "").trim(); borderColor = "var(--accent-cyan)"; bgColor = "rgba(0, 242, 255, 0.15)"; labelColor = "var(--accent-cyan)";
-    } else if (msg.includes("::chef::")) {
-      name = "[CHEF MOCHKIL] 🍳"; displayMessage = msg.replace("::chef::", "").trim(); borderColor = "var(--accent-orange)"; bgColor = "rgba(255, 140, 0, 0.2)"; labelColor = "var(--accent-orange)"; animation = "mochkilShake 0.3s infinite";
-    }
-    e.style.border = `1px solid ${borderColor}`; e.style.background = bgColor; e.style.marginBottom = "8px"; e.style.padding = "10px"; e.style.borderRadius = "8px"; e.style.animation = animation;
+
+    let name = "[GUEST]";
+    let displayMessage = msg;
+    let borderColor = "rgba(0, 242, 255, 0.2)";
+    let bgColor = "rgba(0, 242, 255, 0.05)";
+    let labelColor = "var(--accent-cyan)";
+    let animation = "entryFade 0.5s ease-out";
+
+    const msgLower = msg.toLowerCase();
+
+    if (msgLower.includes("::mr::") || data.userId === CREATOR_UID) {
+      name = "[CREATOR]";
+      displayMessage = msg.replace(/::mr::/gi, "").trim();
+      borderColor = "var(--accent-purple)";
+      bgColor = "rgba(188, 19, 254, 0.1)";
+      labelColor = "var(--accent-purple)";
+    } else if (msgLower.includes("::azul::")) {
+      name = "[DR. AZUL] 🧠";
+      displayMessage = msg.replace(/::azul::/gi, "").trim();
+      borderColor = "var(--accent-cyan)";
+      bgColor = "rgba(0, 242, 255, 0.15)";
+      labelColor = "var(--accent-cyan)";
+    } else if (msgLower.includes("::chef::")) {
+  name = "[CHEF MOCHKIL] 🍳";
+  displayMessage = msg.replace(/::chef::/gi, "").trim();
+  borderColor = "var(--accent-orange)";
+  bgColor = "rgba(255, 140, 0, 0.2)";
+  labelColor = "var(--accent-orange)";
+  // Play the shake 3 times, then stop
+  animation = "mochkilShake 0.3s 3";
+}
+
+    e.style.border = `1px solid ${borderColor}`;
+    e.style.background = bgColor;
+    e.style.marginBottom = "8px";
+    e.style.padding = "10px";
+    e.style.borderRadius = "8px";
+    e.style.animation = animation;
     e.innerHTML = `<span style="color:${labelColor}; font-weight:bold;">${name}:</span> <span style="color:#fff;">${displayMessage}</span>`;
+
     messagesContainer.appendChild(e);
   });
+
   messagesContainer.scrollTop = messagesContainer.scrollHeight;
 });
 
-const guestbookForm=document.getElementById("guestbook-form"),guestbookMessageInput=document.getElementById("guestbook-message");
-guestbookForm.addEventListener("submit",async e=>{
+const guestbookForm = document.getElementById("guestbook-form");
+const guestbookMessageInput = document.getElementById("guestbook-message");
+
+guestbookForm.addEventListener("submit", async e => {
   e.preventDefault();
-  const m=guestbookMessageInput.value.trim();
-  if(m && auth.currentUser){
+  const message = guestbookMessageInput.value.trim();
+  if (message && auth.currentUser) {
     try {
-      await addDoc(collection(db,"guestbookEntries"),{userId:auth.currentUser.uid,message:m,timestamp:serverTimestamp()});
-      guestbookMessageInput.value="";
-    } catch(err) { console.error("Broadcast failed:", err); }
+      await addDoc(collection(db, "guestbookEntries"), {
+        userId: auth.currentUser.uid,
+        message: message,
+        timestamp: serverTimestamp()
+      });
+      guestbookMessageInput.value = "";
+    } catch (err) {
+      console.error("Broadcast failed:", err);
+    }
   }
 });
 </script>

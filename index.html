@@ -93,11 +93,10 @@ footer{padding:40px 20px;text-align:center;border-top:1px solid var(--glass-bord
 <section class="section">
 <h2 style="border-color: var(--accent-purple);">🌱 Core Reality</h2>
 <div class="grid">
-<div class="card"><div class="status" style="color:var(--accent-purple);">Protected</div><img src="stella_box_doll.png" alt="Stella"><h3>Stella — Chaos Seed</h3><p>Emits joy. Generates laughter. Softens reality.</p><button disabled>INSPECT</button></div>
+<div class="card"><div class="status" style="color:var(--accent-purple);">Protected</div><img src="stella_box_doll.png" alt="Stella"><h3>Stella — Chaos Seed</h3><p>Emits joy. Generates laughter. Softens reality.</p><button onclick="openStellaInspect()">INSPECT</button></div>
 <div class="card"><div class="status" style="color:var(--accent-purple);">Actively Reshaping</div><img src="luna_babydoll_spaghetti.png" alt="Luna"><h3>Luna — Spaghetti Timeline</h3><p>Manipulator of pasta, time, and gravity.</p><button disabled>INSPECT</button></div>
 </div>
 </section>
-
 <section class="section">
 <h2>📦 Limited Reality Sets</h2>
 <div class="grid">
@@ -269,6 +268,50 @@ function openDrAzulInspect() {
 function closeDrAzulInspect() {
   const overlay = document.getElementById("drazul-overlay");
   const video = document.getElementById("drazul-video");
+  video.pause();
+  overlay.style.display = "none";
+}
+</script>
+  <div id="stella-overlay" style="
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+">
+  <div style="max-width:90%;max-height:90%;text-align:center;">
+    <video
+      id="stella-video"
+      src="stella_marie_doll_commercial.mp4"
+      controls
+      style="max-width:100%;max-height:80vh;border-radius:12px;"
+    ></video>
+    <br><br>
+    <button onclick="closeStellaInspect()" style="
+      padding:8px 16px;
+      background:#ff8c00;
+      border:none;
+      border-radius:6px;
+      font-family:'Courier New',monospace;
+      cursor:pointer;
+    ">CLOSE INSPECTION</button>
+  </div>
+</div>
+
+<script>
+function openStellaInspect() {
+  const overlay = document.getElementById("stella-overlay");
+  const video = document.getElementById("stella-video");
+  overlay.style.display = "flex";
+  video.currentTime = 0;
+  video.play();
+}
+
+function closeStellaInspect() {
+  const overlay = document.getElementById("stella-overlay");
+  const video = document.getElementById("stella-video");
   video.pause();
   overlay.style.display = "none";
 }

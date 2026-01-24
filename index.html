@@ -23,6 +23,11 @@ h2{font-family:'Courier New',monospace;font-size:1.2rem;border-left:4px solid va
 .card img{width:100%;border-radius:10px;margin-bottom:15px;}
 .status{font-family:'Courier New',monospace;font-size:0.65rem;background:rgba(0,242,255,0.1);color:var(--accent-cyan);padding:3px 8px;border-radius:4px;margin-bottom:12px;width:fit-content;}
 button{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.05);color:#555;font-family:'Courier New',monospace;font-size:0.75rem;cursor:not-allowed;}
+  .card button[onclick]{
+  cursor:pointer;
+  color:#ff8c00;
+  border-color:#ff8c00;
+}
 .card img[src*="azulo"]{animation:realityGlitch 4s infinite;}
 .card img[src*="mochkil_puffs_orange"]{animation:sneakyWiggle 3s ease-in-out infinite;}
 @keyframes realityGlitch{0%,100%{filter:hue-rotate(0deg)}50%{filter:hue-rotate(15deg) brightness(1.1)}}

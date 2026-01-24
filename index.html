@@ -74,7 +74,7 @@ footer{padding:40px 20px;text-align:center;border-top:1px solid var(--glass-bord
 <section class="section">
 <h2 style="border-color: var(--accent-orange);">🔥 Chaos & Culture</h2>
 <div class="grid">
-<div class="card"><div class="status" style="color:var(--accent-orange);">Containment Failed</div><img src="mochkil_rap_figure_box.png" alt="Mochkil Rap"><h3>Mochkil — Rap Figure</h3><p>Cultural disruptor and professional snack thief.</p><button disabled>INSPECT</button></div>
+<div class="card"><div class="status" style="color:var(--accent-orange);">Containment Failed</div><img src="mochkil_rap_figure_box.png" alt="Mochkil Rap"><h3>Mochkil — Rap Figure</h3><p>Cultural disruptor and professional snack thief.</p><button onclick="openMochkilInspect()">INSPECT</button></div>
 <div class="card" style="border-color: var(--accent-purple);"><div class="status" style="color: var(--accent-purple); background: rgba(188, 19, 254, 0.1);">Reality Event: 2nd Birthday</div><img src="unicorn_cake_glitch.jpg" alt="Unicorn Cake"><h3>The Unicorn — Sprinkle Apocalypse Edition</h3><p>A sugary singularity that temporarily alters digestive physics.</p><button disabled>CAKE DETECTED</button></div>
 <div class="card"><div class="status" style="color:var(--accent-orange);">Executive Chef</div><img src="commander_in_chef.png" alt="Commander Chef"><h3>Mochkil — Commander in Chef</h3><p>Host of Snack Attack. Michelin-star chaos.</p><button disabled>INSPECT</button></div>
 <div class="card"><div class="status" style="color: var(--accent-cyan);">Player One / Legacy Unit</div><img src="gamer_seth_action_figure.png" alt="Gamer Seth"><h3>Gamer Seth — Pro Edition</h3><p>Master of virtual realms. Legend says he can out-game any AI.</p><button disabled>LEGENDARY ARTIFACT</button></div>
@@ -177,6 +177,49 @@ guestbookForm.addEventListener("submit",async e=>{
     } catch(err) { console.error("Broadcast failed:", err); }
   }
 });
+</script>
+  <div id="mochkil-overlay" style="
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+">
+  <div style="max-width:90%;max-height:90%;text-align:center;">
+    <video
+      id="mochkil-video"
+      src="mochkil_toy_commercial.mp4"
+      controls
+      style="max-width:100%;max-height:80vh;border-radius:12px;"
+    ></video>
+    <br><br>
+    <button onclick="closeMochkilInspect()" style="
+      padding:8px 16px;
+      background:#ff8c00;
+      border:none;
+      border-radius:6px;
+      font-family:'Courier New',monospace;
+      cursor:pointer;
+    ">CLOSE INSPECTION</button>
+  </div>
+</div>
+  <script>
+function openMochkilInspect() {
+  const overlay = document.getElementById("mochkil-overlay");
+  const video = document.getElementById("mochkil-video");
+  overlay.style.display = "flex";
+  video.currentTime = 0;
+  video.play();
+}
+
+function closeMochkilInspect() {
+  const overlay = document.getElementById("mochkil-overlay");
+  const video = document.getElementById("mochkil-video");
+  video.pause();
+  overlay.style.display = "none";
+}
 </script>
 </body>
 </html>

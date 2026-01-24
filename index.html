@@ -66,7 +66,8 @@ footer{padding:40px 20px;text-align:center;border-top:1px solid var(--glass-bord
 <section class="section">
 <h2>🧠 Reality Science Division</h2>
 <div class="grid">
-<div class="card"><div class="status">Quantum Signature</div><img src="dr_azul_box.png" alt="Dr. Azul"><h3>Dr. Azul — Reality Science</h3><p>Chief researcher of improbable outcomes. Solving non-existent problems.</p><button disabled>INSPECT</button></div>
+<div class="card"><div class="status">Quantum Signature</div><img src="dr_azul_box.png" alt="Dr. Azul"><h3>Dr. Azul — Reality Science</h3><p>Chief researcher of improbable outcomes. Solving non-existent problems.</p><button onclick="openDrAzulInspect()">INSPECT</button>
+</div>
 </div>
 </section>
 
@@ -225,6 +226,49 @@ function openMochkilInspect() {
 function closeMochkilInspect() {
   const overlay = document.getElementById("mochkil-overlay");
   const video = document.getElementById("mochkil-video");
+  video.pause();
+  overlay.style.display = "none";
+}
+</script>
+  <div id="drazul-overlay" style="
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:2000;
+">
+  <div style="max-width:90%;max-height:90%;text-align:center;">
+    <video
+      id="drazul-video"
+      src="dr_azul_toy_commercial.mp4"
+      controls
+      style="max-width:100%;max-height:80vh;border-radius:12px;"
+    ></video>
+    <br><br>
+    <button onclick="closeDrAzulInspect()" style="
+      padding:8px 16px;
+      background:#ff8c00;
+      border:none;
+      border-radius:6px;
+      font-family:'Courier New',monospace;
+      cursor:pointer;
+    ">CLOSE INSPECTION</button>
+  </div>
+</div>
+  <script>
+function openDrAzulInspect() {
+  const overlay = document.getElementById("drazul-overlay");
+  const video = document.getElementById("drazul-video");
+  overlay.style.display = "flex";
+  video.currentTime = 0;
+  video.play();
+}
+
+function closeDrAzulInspect() {
+  const overlay = document.getElementById("drazul-overlay");
+  const video = document.getElementById("drazul-video");
   video.pause();
   overlay.style.display = "none";
 }
